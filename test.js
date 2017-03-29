@@ -19,23 +19,23 @@ var serialPort = '/dev/cu.usbserial-EN192756';  // your serial port name
 var universe = dmx.addUniverse('mySystem', 'enttec-usb-dmx-pro',
 serialPort);
 
-var channel = 0;    // channel number
-var level = 0;      // level
-var fadeStep = 1;   // increment to fade; for manual fading
+var channel = 0;                        // channel number
+var level = 0;                          // level
+var fadeStep = 1;                       // increment to fade; for manual fading
 
 // turn everything off:
 for (channel=0; channel < 256; channel++) {
-  var light = {[channel]: level};      // make an object
-  universe.update(light);              // set channel to 0
+  var light = {[channel]: level};       // make an object
+  universe.update(light);               // set channel to 0
 }
 // running a sequence using Animation:
 console.log("running a 12-second animation...");
 var cue = new sequence();
-cue.add({0: 255}, 5000)   // fade channel 0 to 255, 5 seconds
-  .delay(2000)          // delay 2 seconds
-  .add({0: 0}, 5000)    // fade channel 0 to 0, 5 seconds
-  .delay(2000);         // delay 2 seconds
-  cue.run(universe, done);  // run the cue, with callback function done
+cue.add({0: 255}, 5000)                 // fade channel 0 to 255, 5 seconds
+  .delay(2000)                          // delay 2 seconds
+  .add({0: 0}, 5000)                    // fade channel 0 to 0, 5 seconds
+  .delay(2000);                         // delay 2 seconds
+cue.run(universe, done);                // run the cue, then callback
 
 function done() {
   console.log("done. Now I'll run the loop...");
@@ -44,15 +44,15 @@ function done() {
 
 // fading a channel manually:
 function fade(){
-  var light = {[channel]: level};      // make an object
-  universe.update(light);              // update the light
+  var light = {[channel]: level};       // make an object
+  universe.update(light);               // update the light
 
   // change the level for next time:
-  if (level === 255 || level === 0) {  // if 0 or 255
-    fadeStep = -fadeStep;              // reverse the fade direction
+  if (level === 255 || level === 0) {   // if 0 or 255
+    fadeStep = -fadeStep;               // reverse the fade direction
     console.log('loop');
   }
-  level += fadeStep;                   // increment/decrement the fade
+  level += fadeStep;                    // increment/decrement the fade
 }
 
 //----------------------------------------------------
