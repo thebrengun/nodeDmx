@@ -27,7 +27,7 @@ function blackout() {
   console.log('blackout');
   for (channel=0; channel < 256; channel++) {
     var light = {[channel]: 0};       // make an object
-    universe.update(light);               // set channel to 0
+  //  universe.update(light);               // set channel to 0
   }
 }
 
@@ -56,7 +56,7 @@ function quit(error) {
   }
   console.log('quitting');
   if (exitFunction) exitFunction();   // if there's an exit function, use it
-  setTimeout(process.exit, 1000);     // avter 1 second, quit
+  setTimeout(process.exit, 1500);     // avter 1 second, quit
 }
 
 var exitFunction = blackout;
