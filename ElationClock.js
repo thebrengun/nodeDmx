@@ -52,7 +52,7 @@ function blackout(callback) {
     var channel = {[c]: 0};       // make an object
     universe.update(channel);     // set channel to 0
   }
-  callback;
+  callback();
 }
 
 function tick() {
