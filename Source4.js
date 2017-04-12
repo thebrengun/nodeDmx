@@ -64,30 +64,20 @@ function fadeChannel(thisChannel) {
 //----------------------------------------------------
 // this section makes sure the script turns everything off
 // before quitting:
-
-process.stdin.resume();    //make sure the program doesn't close right away
-
-function exitHandler(options, err) {
-  if (options.cleanup) console.log('clean');
-  if (err) console.log(err.stack);
-  if (options.exit) process.exit();
-}
-
-// this section is to make sure the lights all dim to 0 when you quit:
 function quit(error) {
   if (error) {
-    console.log('Uncaught Exception...');
+    console.log('Uncaught Exception: ');
     console.log(error.stack);
   }
   console.log('quitting');
-  universe.update({0:0}); // set channel 0 to 0
-  process.exit();
+  if (exitFunction) exitFunction();   // if there's an exit function, use it
+  setTimeout(process.exit, 1000);     // avter 1 second, quit
 }
+
+var exitFunction = blackout;
+
 //Stop the script from quitting before you clean up:
 process.stdin.resume();
-
-// catch ctrl+c:
-process.on('SIGINT', quit);
-
-//catch uncaught exceptions:
-process.on('uncaughtException', quit);
+process.on('SIGINT', quit);             // catch ctrl+c:
+process.on('uncaughtException', quit);  //catch uncaught exceptions
+process.on('beforeExit', quit);         // catch the beforeExit message
