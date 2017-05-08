@@ -27,7 +27,7 @@ function blackout() {
   console.log('blackout');
   for (channel=0; channel < 256; channel++) {
     var light = {[channel]: 0};       // make an object
-  //  universe.update(light);               // set channel to 0
+    universe.update(light);               // set channel to 0
   }
 }
 
@@ -39,6 +39,7 @@ function setChannel(request, response) {
   universe.update({[channel]:level});               // set channel to 0
   response.end('set ' + channel + ' to ' + level);
 }
+
 
 blackout();
 server.use('/',express.static('public'));   // set a static file directory
