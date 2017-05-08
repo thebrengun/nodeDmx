@@ -9,6 +9,7 @@ This is a web server that responds to HTTP GET requests
 for /set/channel/level
 
 created 12 April 2017
+modified 8 May 2017
 by Tom Igoe
 */
 var open = require('open');
@@ -37,7 +38,8 @@ function setChannel(request, response) {
   + ' level: ' + request.params.level);
   var channel = request.params.channel;
   var level = request.params.level;
-  universe.update({[channel]:level});               // set channel to 0
+  // set channel (most DMX systems are 1-indexed, but this library is 0-indexed):
+  universe.update({[channel-1]:level});
   response.end('set ' + channel + ' to ' + level);
 }
 
