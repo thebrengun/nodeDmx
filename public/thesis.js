@@ -2,8 +2,8 @@ var url = '/set';			// the ropute to set a DMX channel in the server
 var responseDiv;			// the div where the server response goes
 var channelCount = 1;
 var spacing = 40;								// spacing between sliders
-var channelsInUse = [0, 12, 16, 24, 36];
-var channelNames = ['front SL', 'front SR', 'front SR 2', 'back', 'ITP sign'];
+var channelsInUse = [0, 12, 16, 24, 36, 42];
+var channelNames = ['front SL', 'front SR', 'front SR 2', 'back', 'ITP sign', 'area SL'];
 function setup() {
 	noCanvas();				// no canvas
 	makeDimmers(15);  // make 15 dmx channel sliders
@@ -24,7 +24,7 @@ function makeDimmers(dimmerCount) {
 		createDimmer(channelsInUse[x], dimmerDiv, channelNames[x]);
 	}
 
-	masterFader(dimmerDiv);
+	//masterFader(dimmerDiv);
 }
 
 function createDimmer(d, parentDiv, myName) {

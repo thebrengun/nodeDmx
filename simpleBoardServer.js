@@ -11,6 +11,7 @@ for /set/channel/level
 created 12 April 2017
 by Tom Igoe
 */
+var open = require('open');
 var express = require('express'); // include the express library
 var server = express();           // create a server using express
 
@@ -45,7 +46,7 @@ blackout();
 server.use('/',express.static('public'));   // set a static file directory
 server.listen(8080);
 server.get('/set/:channel/:level', setChannel);
-
+open('http://localhost:8080');
 
 //----------------------------------------------------
 // this section makes sure the script turns everything off
