@@ -48,7 +48,7 @@ blackout();
 server.use('/',express.static('public'));   // set a static file directory
 server.listen(8080);
 server.get('/set/:channel/:level', setChannel);
-open('http://localhost:8080');
+open('http://localhost:8080');              // open this URL in a browser
 
 //----------------------------------------------------
 // this section makes sure the script turns everything off
@@ -60,7 +60,7 @@ function quit(error) {
   }
   console.log('quitting');
   if (exitFunction) exitFunction();   // if there's an exit function, use it
-  setTimeout(process.exit, 1500);     // avter 1 second, quit
+  setTimeout(process.exit, 1500);     // after 1 second, quit
 }
 
 var exitFunction = blackout;
@@ -68,5 +68,5 @@ var exitFunction = blackout;
 //Stop the script from quitting before you clean up:
 process.stdin.resume();
 process.on('SIGINT', quit);             // catch ctrl+c:
-process.on('uncaughtException', quit);  //catch uncaught exceptions
+process.on('uncaughtException', quit);  // catch uncaught exceptions
 process.on('beforeExit', quit);         // catch the beforeExit message
