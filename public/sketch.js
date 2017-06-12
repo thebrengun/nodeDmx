@@ -21,38 +21,37 @@ by Tom Igoe
 var url = '/set';								// the route to set a DMX channel in the server
 var responseDiv;								// the div where the server response goes
 var requestDiv;									// the div where the server response goes
-//var dmxAddress = 100;     		// the light's starting address (0-indexed)
 var dmxAddress = 0;     		    // the light's starting address (0-indexed)
 
 // channel definitions for an Elation ProSpot LED:
 var ProSpot = {
-	pan:1 + dmxAddress,
-	tilt:3 + dmxAddress,
-	colorWheel:5 + dmxAddress,
-	rotatingGobo:7 + dmxAddress,
-	fixedGobos:10 + dmxAddress,
-	rotatingPrism:11 + dmxAddress,
-	focus:12 + dmxAddress,
-	zoom:14 + dmxAddress,
-	frost:16 + dmxAddress,
-	shutter:17 + dmxAddress,
-	intensity:18 + dmxAddress,
-	iris:19 + dmxAddress
+	pan:1,
+	tilt:3,
+	colorWheel:5,
+	rotatingGobo:7,
+	fixedGobos:10,
+	rotatingPrism:11,
+	focus:12,
+	zoom:14,
+	frost:16,
+	shutter:17,
+	intensity:18,
+	iris:19
 };
 
 var Source4Lustr = {		// Lustr in general HSI mode
-	Hue: 1 + dmxAddress,
-	HueFine: 2 + dmxAddress,
-	Saturation: 3 + dmxAddress,
-	Intensity: 4 + dmxAddress,
-	Strobe: 5 + dmxAddress,
-	Fan:6 + dmxAddress
+	Hue: 1,
+	HueFine: 2,
+	Saturation: 3,
+	Intensity: 4,
+	Strobe: 5,
+	Fan:6
 };
 
 var DesireD40 = {		// Lustr in general HSI mode
-	Intensity: 1 + dmxAddress,
-	Strobe: 2 + dmxAddress,
-	Fan: 3 + dmxAddress
+	Intensity: 1,
+	Strobe: 2,
+	Fan: 3
 };
 
 // choose the type of fixture you're controlling:
@@ -66,6 +65,7 @@ function setup() {
 	// iterate over the properties in the fixture definition (in this case, ProSpot)
 	// and make sliders for each one:
 	for (property in FixtureType) {
+		FixtureType[property] = FixtureType[property] + dmxAddress;
 		// make a slider, name it, rotate it, and position it:
 		var mySlider = createSlider(0, 255, 0);
 		mySlider.id(property);
@@ -80,11 +80,12 @@ function setup() {
 		myLabel.size(200, 30);
 		// it took some fiddling to get this positioning, especially since the objects
 		// are rotated:
-		myLabel.position(mySlider.x-mySlider.height*2, 20);
+		myLabel.position(mySlider.x - mySlider.height*2, 20);
 
 		// make a level label, set its value, and position it:
 		var myLevel = createSpan(mySlider.value());
-		myLevel.position(mySlider.x+spacing*1.6, 280);
+		// this position took fiddling to get right:
+		myLevel.position(mySlider.x + spacing*1.6, 280);
 		// give it a class so you can update it later:
 		myLevel.class(property);
 
