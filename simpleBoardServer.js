@@ -18,11 +18,15 @@ var server = express();           // create a server using express
 
 var DMX = require('dmx');     // include the dmx lib
 var dmx = new DMX();          // create a new control instance
-var serialPort = '/dev/cu.usbserial-EN192756';  // your serial port name
+var serialPort = 	'/dev/tty.usbserial-EN193040';  // your serial port name
 
 // create a new DMX universe on your serial port:
 var universe = dmx.addUniverse('mySystem',
 'enttec-usb-dmx-pro', serialPort);
+//
+// // create a new DMX universe on your serial port:
+// var universe = dmx.addUniverse('mySystem',
+// 'enttec-usb-dmx-pro', serialPort);
 
 // turn everything off:
 function blackout() {

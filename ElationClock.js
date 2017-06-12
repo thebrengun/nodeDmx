@@ -15,14 +15,14 @@ by Tom Igoe
 var DMX = require('dmx');     // include the dmx lib
 var dmx = new DMX();          // create a new control instance
 var sequence = DMX.Animation; // create a new animation sequence instance
-var serialPort = 	'/dev/tty.usbserial-EN192756';  // your serial port name
+var serialPort = 	'/dev/tty.usbserial-00202414';  // your serial port name
 
 var dmxAddress = 99;     // the light's starting address
 var lightsAreOn = false;
 
 // create a new DMX universe on your serial port:
 var universe = dmx.addUniverse('mySystem',
-'enttec-usb-dmx-pro', serialPort);
+'enttec-open-usb-dmx', serialPort);
 
 // channel definitions:
 var ProSpot = {
@@ -57,12 +57,12 @@ function blackout(callback) {
 
 function tick() {
   var now = new Date();
-  var sunrise = new Date(now.getFullYear(),\
+  var sunrise = new Date(now.getFullYear(),
   now.getMonth(),now.getDate(),6,32,0);
-  var sunset = new Date(now.getFullYear(),\
+  var sunset = new Date(now.getFullYear(),
   now.getMonth(),now.getDate(),19,25,0);
 
-  var noon = new Date(now.getFullYear(),\
+  var noon = new Date(now.getFullYear(),
   now.getMonth(),now.getDate(),12,0,0);
 
   var dayLength = (sunset - sunrise)/1000;    // length of day in seconds

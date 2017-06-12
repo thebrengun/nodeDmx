@@ -15,7 +15,7 @@ by Tom Igoe
 var DMX = require('dmx');     // include the dmx lib
 var dmx = new DMX();          // create a new control instance
 var sequence = DMX.Animation; // create a new animation sequence instance
-var serialPort = 	'/dev/tty.usbserial-EN192756';  // your serial port name
+var serialPort = 	'/dev/tty.usbserial-EN193040';  // your serial port name
 
 var dmxAddress = 99;     // the light's starting address
 
