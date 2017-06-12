@@ -23,10 +23,6 @@ var serialPort = 	'/dev/tty.usbserial-EN193040';  // your serial port name
 // create a new DMX universe on your serial port:
 var universe = dmx.addUniverse('mySystem',
 'enttec-usb-dmx-pro', serialPort);
-//
-// // create a new DMX universe on your serial port:
-// var universe = dmx.addUniverse('mySystem',
-// 'enttec-usb-dmx-pro', serialPort);
 
 // turn everything off:
 function blackout() {
